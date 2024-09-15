@@ -15,6 +15,9 @@ const sequelize = process.env.DB_URL
         dialectOptions: {
           decimalNumbers: true,
         },
+        define: {
+          timestamps: false, // Disable timestamps for all models - causing errors
+        },
       }
     );
 

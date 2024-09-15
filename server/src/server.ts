@@ -3,7 +3,7 @@ dotenv.config();
 
 import express from 'express';
 import sequelize from './config/connection.js';
-import routes from './routes/api/index.js';
+import routes from './routes/api/api-routes.js';
 
 const forceDatabaseRefresh = false;
 
