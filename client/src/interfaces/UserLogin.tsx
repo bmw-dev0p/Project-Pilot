@@ -1,7 +1,9 @@
 // Interface definition for UserLogin
 export interface UserLogin {
-    username: string | null;  // Property for storing username, nullable
-    email?: string | null; 
-    password: string | null;  // Property for storing password, nullable
+    fname?: string; // "?" denotes an optional property (not used in actual login, but collected at sign up)
+    lname?: string;
+    username: string;  
+    email?: string; 
+    password: string;  
   }
   
