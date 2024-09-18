@@ -16,7 +16,7 @@ const sequelize = process.env.DB_URL
           decimalNumbers: true,
         },
         define: {
-          timestamps: false, // Disable timestamps for all models - causing errors
+          timestamps: true, // Disable timestamps for all models - causing errors
         },
       }
     );
