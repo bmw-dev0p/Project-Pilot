@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Task 1",
+        "description": "JollyGuru's sample task 1",
+        "status_id": 1,
+        "user_id": 1
+    },
+    {
+        "name": "Task 2",
+        "description": "SunnyScribe's sample task 1",
+        "status_id": 4,
+        "user_id": 2
+    },
+    {
+        "name": "Task 3",
+        "description": "JollyGuru's sample task 2",
+        "status_id": 2,
+        "user_id": 1
+    },
+    {
+        "name": "Task 4",
+        "description": "SunnyScribe's sample task 2",
+        "status_id": 3,
+        "user_id": 2
+    },
+    {
+        "name": "Task 5",
+        "description": "RadiantComet's sample task 1",
+        "status_id": 1,
+        "user_id": 3
+    },
+    {
+        "name": "Task 5",
+        "description": "RadiantComet's sample task 2",
+        "status_id": 3,
+        "user_id": 3
+    }
+]

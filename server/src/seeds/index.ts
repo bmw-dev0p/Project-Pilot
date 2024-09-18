@@ -1,4 +1,6 @@
 import { seedUsers } from './user-seeds.js';
+import { seedTasks } from './task-seeds.js';
+import { seedStatus } from './status-seeds.js'
 import sequelize from '../config/connection.js';
 
 const seedAll = async (): Promise<void> => {
@@ -8,6 +10,12 @@ const seedAll = async (): Promise<void> => {
     
     await seedUsers();
     console.log('\n----- USERS SEEDED -----\n');
+
+    await seedStatus();
+    console.log('\n----- STATUS SEEDED -----\n');
+
+    await seedTasks();
+    console.log('\n----- TASKS SEEDED -----\n');
     
     process.exit(0);
   } catch (error) {
