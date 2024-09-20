@@ -1,5 +1,5 @@
 import { Task } from '../models/taskFactory.js';
-import taskSeedData from './taskSeedData.json' assert { type: 'json' };
+import taskSeedData from './taskSeedData.json' with { type: 'json' };
 
 export const seedTasks = async () => {
   await Task.bulkCreate(

@@ -9,6 +9,7 @@ interface UserAttributes {
   username: string;
   email: string;
   password: string;
+  img: string;
 }
 
 // Define the optional attributes for creating a new User
@@ -22,6 +23,7 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
   public username!: string;
   public email!: string;
   public password!: string;
+  public img!: string;
 
   // Method to hash and set the password for the user
   public async setPassword(password: string) {
@@ -60,6 +62,10 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       password: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      img: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
     },
     {

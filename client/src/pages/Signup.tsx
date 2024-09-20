@@ -9,17 +9,30 @@ const SignUp = () => {
     lname: '',
     username: '',
     email: '',
-    password: ''
+    password: '',
+    img: '',
   });
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Handle changes in the input fields
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  // Handle changes in the input fields + image ?
+  const handleChange = async (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    //image 
+    const files = (e.target as HTMLInputElement).files;
+    const data = new FormData();
+    data.append('file', files![0]);
+    data.append('upload_preset', 'social-media-app');
+    const res = await fetch('https://api.cloudinary.com/v1_1/dk1jxwv8p/image/upload', {
+      method: 'POST',
+      body: data
+    });
+    const file = await res.json();
+    //
     const { name, value } = e.target;
     setSignUpData({
       ...signUpData,
-      [name]: value
+      [name]: value,
+      img: file.secure_url
     });
   };
 
@@ -33,6 +46,7 @@ const SignUp = () => {
     setErrorMessage(null);  // Clear any previous error
     return true;  // Form is valid
   };
+
 
   // Handle form submission for sign up
   const handleSubmit = async (e: FormEvent) => {
@@ -60,10 +74,10 @@ const SignUp = () => {
 );
 
   return (
-    <div className='form-container'>
+    <section className='form-container'>
       <form className='form sign-up-form' onSubmit={handleSubmit}>
         <h1>Sign Up</h1>
-        {/* First name input field */}
+        {/* firstname */}
         <div className="form-group">
           <label>First Name:</label>
           <input
@@ -74,7 +88,7 @@ const SignUp = () => {
             onChange={handleChange}
           />
         </div>
-        {/* Last name input field */}
+        {/* Last name */}
         <div className="form-group">
           <label>Last Name:</label>
           <input
@@ -85,7 +99,7 @@ const SignUp = () => {
             onChange={handleChange}
           />
         </div>
-        {/* Username input field */}
+        {/* username */}
         <div className="form-group">
           <label>Username:</label>
           <input
@@ -96,7 +110,7 @@ const SignUp = () => {
             onChange={handleChange}
           />
         </div>
-        {/* Email input field */}
+        {/* email */}
         <div className="form-group">
           <label>Email:</label>
           <input
@@ -107,7 +121,7 @@ const SignUp = () => {
             onChange={handleChange}
           />
         </div>
-        {/* Password input field */}
+        {/* password */}
         <div className="form-group">
           <label>Password:</label>
           <input
@@ -118,7 +132,19 @@ const SignUp = () => {
             onChange={handleChange}
           />
         </div>
-        {/* Submit button for the sign up form */}
+        {/* image upload */}
+        <div className="form-group">
+          <label>Upload a profile picture</label>
+          <input
+            className="form-input"
+            type='file'
+            name='img'
+            accept='.jpg, .jpeg, .png'
+            value={signUpData.password || ''}
+            onChange={handleChange}
+          />
+        </div>
+        {/* submit button */}
         <div className="form-group">
           <button className="btn btn-primary" type='submit'>Sign Up</button>
         </div>
@@ -129,7 +155,7 @@ const SignUp = () => {
             <p className="error-text">{errorMessage}</p>
           </div>
         )}
-    </div>
+    </section>
   );
 };
 
