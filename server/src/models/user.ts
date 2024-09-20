@@ -4,9 +4,12 @@ import bcrypt from 'bcrypt';
 // Define the attributes for the User model
 interface UserAttributes {
   id: number;
+  fname: string;
+  lname: string;
   username: string;
   email: string;
   password: string;
+  img: string;
 }
 
 // Define the optional attributes for creating a new User
@@ -15,9 +18,12 @@ interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
 // Define the User class extending Sequelize's Model
 export class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
   public id!: number;
+  public fname!: string;
+  public lname!: string;
   public username!: string;
   public email!: string;
   public password!: string;
+  public img!: string;
 
   // Method to hash and set the password for the user
   public async setPassword(password: string) {
@@ -37,6 +43,14 @@ export function UserFactory(sequelize: Sequelize): typeof User {
         autoIncrement: true,
         primaryKey: true,
       },
+      fname: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lname: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       username: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -48,6 +62,10 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       password: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      img: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
     },
     {

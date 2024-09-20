@@ -1,5 +1,4 @@
 import { useState, FormEvent, ChangeEvent } from "react";
-
 import Auth from '../utils/auth';  // Import the Auth utility for managing authentication state
 import { login } from "../api/authAPI";  // Import the login function from the API
 import { UserLogin } from "../interfaces/UserLogin";  // Import the interface for UserLogin
@@ -20,9 +19,30 @@ const Login = () => {
     });
   };
 
+  // State to manage validation error messages
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  
+  // Validate form inputs
+  const handleValidate = () => {
+    const { username, password } = loginData;
+    if (!username || !password) {
+      setErrorMessage('Please fill out all fields');
+      return false;  // Form is invalid
+    }
+    setErrorMessage(null);  // Clear any previous error
+    return true;  // Form is valid
+  };
+
   // Handle form submission for login
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    // Validate inputs before submitting
+    const isValid = handleValidate();
+    if (!isValid) {
+      return;  // Stop submission if validation fails
+    }
+
     try {
       // Call the login API endpoint with loginData
       const data = await login(loginData);
@@ -30,6 +50,7 @@ const Login = () => {
       Auth.login(data.token);
     } catch (err) {
       console.error('Failed to login', err);  // Log any errors that occur during login
+      setErrorMessage('Failed to login. Please try again');  // Set error message if login fails
     }
   };
 
@@ -64,8 +85,13 @@ const Login = () => {
           <button className="btn btn-primary" type='submit'>Login</button>
         </div>
       </form>
+      {errorMessage && (
+        <div>
+          <p className="error-text">{errorMessage}</p>
+        </div>
+      )}
     </div>
-  )
+  );
 };
 
 export default Login;
