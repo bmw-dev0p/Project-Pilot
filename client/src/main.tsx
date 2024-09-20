@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import App from './App.tsx';
 
@@ -8,7 +9,7 @@ import ErrorPage from './pages/Error.tsx';
 import Home from './pages/Home.tsx';
 import Login from './pages/Login.tsx';
 import SignUp from './pages/Signup.tsx';
-import Board from './pages/Board.tsx';
+import Board from './pages/Board/Board.tsx';
 import User from './pages/User.tsx';
 
 const router = createBrowserRouter([

@@ -1,0 +1,71 @@
+/* General app styling */
+.app {
+    height: 100vh;
+    background-color: #f4f9ff; /* Light blue background */
+  }
+  
+  /* Sidebar styling */
+  .sidebar {
+    width: 250px; /* Adjust width for a more prominent sidebar */
+    background-color: #ffffff; /* White background for contrast */
+    height: 100vh;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); 
+    padding-top: 30px;
+  }
+  
+  /* Board layout */
+  .board-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  /* Task Column styling */
+  .task-column {
+    width: 22%; /* Adjust column width to match the design */
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    min-height: 600px; /* Ensure columns are tall enough */
+    overflow-y: auto; /* Allow scrolling if the content exceeds height */
+  }
+  
+  /* Task card styling */
+  .task-card {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 30px; /* Rounded corners */
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for a floating effect */
+    margin-bottom: 20px; /* Spacing between cards */
+  }
+  
+  /* Typography adjustments */
+  h2 {
+    font-weight: 600;
+    color: #1b1b1b;
+  }
+  
+  h5 {
+    font-weight: 600;
+    color: #1b1b1b;
+  }
+  
+  /* Subtle text and task details */
+  .card-title {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .card-text {
+    font-size: 14px;
+    color: #7a7a7a;
+  }
+  
+  .task-column h5 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+  

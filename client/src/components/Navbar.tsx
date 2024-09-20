@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import auth from '../utils/auth';
-
-const Navbar = () => {
+// import { Navbar as Navbar, Nav, Button, Container } from 'react-bootstrap';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+const NavigationBar = () => {
   // State to track the login status
   const [loginCheck, setLoginCheck] = useState(false);
 
@@ -19,35 +23,41 @@ const Navbar = () => {
   }, [loginCheck]);  // Dependency array ensures useEffect runs when loginCheck changes
 
   return (
-    <div className="display-flex justify-space-between align-center py-2 px-5 mint-green">
-      <h1>
-        Authentication Review
-      </h1>
-      <div>
-        {
-          // Conditional rendering based on loginCheck state
-          !loginCheck ? (
-            <>
-              {/* Render sign up button if user is not logged in */}
-              <button className="btn" type='button'>
-                <Link to='/signup'>Sign Up</Link>
-              </button>
-              {' '}
-              {/* Render login button if user is not logged in */}
-              <button className="btn" type='button'>
-                <Link to='/login'>Login</Link>
-              </button>
-            </>
-          ) : (
-            // Render logout button if user is logged in
-            <button className="btn" type='button' onClick={() => {
-              auth.logout();  // Call logout() method from auth utility on button click
-            }}>Logout</button>
-          )
-        }
-      </div>
-    </div>
-  )
+    <Navbar bg="light" expand="lg" className="mb-4">
+      <Container>
+        {/* Navbar Brand (Title) */}
+        <Navbar.Brand as={Link} to="/">
+          Project Pilot
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            {/* Add navigation links if needed */}
+            <Nav.Link as={Link} to="/">Home</Nav.Link>
+            <Nav.Link as={Link} to="/board">Board</Nav.Link>
+          </Nav>
+
+          {/* Right side of the Navbar */}
+          <div>
+            {
+              // Conditional rendering based on loginCheck state
+              !loginCheck ? (
+                <>
+                  {/* Render Sign Up and Login buttons if the user is not logged in */}
+                  {/* <Button variant="outline-primary" className="me-2" as={Link} to="/signup">Sign Up</Button>
+                  <Button variant="outline-success" as={Link} to="/login">Login</Button> */}
+                   <Nav.Link as={Link} to="/signup">Signup</Nav.Link>
+                   <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                </>
+              ) : (
+                <Button variant="outline-danger" onClick={() => auth.logout()}>Logout</Button>
+              )
+            }
+          </div>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
 
-export default Navbar;
+export default NavigationBar;
