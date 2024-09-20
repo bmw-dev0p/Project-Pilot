@@ -16,23 +16,11 @@ const SignUp = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // Handle changes in the input fields + image ?
-  const handleChange = async (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    //image 
-    const files = (e.target as HTMLInputElement).files;
-    const data = new FormData();
-    data.append('file', files![0]);
-    data.append('upload_preset', 'social-media-app');
-    const res = await fetch('https://api.cloudinary.com/v1_1/dk1jxwv8p/image/upload', {
-      method: 'POST',
-      body: data
-    });
-    const file = await res.json();
-    //
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setSignUpData({
       ...signUpData,
-      [name]: value,
-      img: file.secure_url
+      [name]: value
     });
   };
 
@@ -47,6 +35,22 @@ const SignUp = () => {
     return true;  // Form is valid
   };
 
+  //upload image to cloudinary
+  // const handleImage = async (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  //   const files = (e.target as HTMLInputElement).files;
+  //   const data = new FormData();
+  //   data.append('file', files![0]);
+  //   data.append('upload_preset', 'social-media-app');
+  //   const res = await fetch('https://api.cloudinary.com/v1_1/dk1jxwv8p/image/upload', {
+  //     method: 'POST',
+  //     body: data
+  //   });
+  //   const file = await res.json();
+  //   setSignUpData({
+  //     ...signUpData,
+  //     img: file.secure_url
+  //   });
+  // };
 
   // Handle form submission for sign up
   const handleSubmit = async (e: FormEvent) => {
