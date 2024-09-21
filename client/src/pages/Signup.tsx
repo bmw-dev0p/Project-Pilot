@@ -2,6 +2,8 @@ import { useState, FormEvent, ChangeEvent, useEffect } from "react";
 import Auth from '../utils/auth';
 import { signUp } from "../api/authAPI";
 import { UserLogin } from "../interfaces/UserLogin";
+// @ts-ignore
+import CloudinaryUploadWidget from '../components/Img-Upload';
 
 const SignUp = () => {
   const [signUpData, setSignUpData] = useState<UserLogin>({
@@ -10,12 +12,11 @@ const SignUp = () => {
     username: '',
     email: '',
     password: '',
-    img: '',
+    img: '',  // Holds the image URL
   });
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Handle changes in the input fields + image ?
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setSignUpData({
@@ -24,42 +25,22 @@ const SignUp = () => {
     });
   };
 
-  // Validate form inputs
   const handleValidate = () => {
     const { fname, lname, username, email, password } = signUpData;
     if (!fname || !lname || !username || !email || !password) {
       setErrorMessage('Please fill out all fields before submitting');
-      return false;  // Form is invalid
+      return false;
     }
-    setErrorMessage(null);  // Clear any previous error
-    return true;  // Form is valid
+    setErrorMessage(null);
+    return true;
   };
 
-  //upload image to cloudinary
-  // const handleImage = async (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-  //   const files = (e.target as HTMLInputElement).files;
-  //   const data = new FormData();
-  //   data.append('file', files![0]);
-  //   data.append('upload_preset', 'social-media-app');
-  //   const res = await fetch('https://api.cloudinary.com/v1_1/dk1jxwv8p/image/upload', {
-  //     method: 'POST',
-  //     body: data
-  //   });
-  //   const file = await res.json();
-  //   setSignUpData({
-  //     ...signUpData,
-  //     img: file.secure_url
-  //   });
-  // };
-
-  // Handle form submission for sign up
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    // Validate inputs before submitting
     const isValid = handleValidate();
     if (!isValid) {
-      return;  // Stop submission if validation fails
+      return;
     }
 
     try {
@@ -70,12 +51,13 @@ const SignUp = () => {
     }
   };
 
-  // check the current state of the signUpData object
+  const setImageUrl = (url: string) => {
+    setSignUpData({ ...signUpData, img: url });
+  };
+
   useEffect(() => {
     console.log('Current signUpData state:', signUpData);
-  }, 
-  [signUpData]
-);
+  }, [signUpData]);
 
   return (
     <section className='form-container'>
@@ -139,26 +121,18 @@ const SignUp = () => {
         {/* image upload */}
         <div className="form-group">
           <label>Upload a profile picture</label>
-          <input
-            className="form-input"
-            type='file'
-            name='img'
-            accept='.jpg, .jpeg, .png'
-            value={signUpData.password || ''}
-            onChange={handleChange}
-          />
+          <CloudinaryUploadWidget setImageUrl={setImageUrl} />
         </div>
         {/* submit button */}
         <div className="form-group">
           <button className="btn btn-primary" type='submit'>Sign Up</button>
         </div>
       </form>
-      {/* conditional error message */}
       {errorMessage && (
-          <div>
-            <p className="error-text">{errorMessage}</p>
-          </div>
-        )}
+        <div>
+          <p className="error-text">{errorMessage}</p>
+        </div>
+      )}
     </section>
   );
 };
