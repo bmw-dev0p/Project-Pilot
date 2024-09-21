@@ -2,6 +2,7 @@
 .app {
     height: 100vh;
     background-color: #f4f9ff; /* Light blue background */
+    overflow-x: hidden; /* Prevent horizontal scroll */
   }
   
   /* Sidebar styling */
@@ -9,7 +10,7 @@
     width: 250px; /* Adjust width for a more prominent sidebar */
     background-color: #ffffff; /* White background for contrast */
     height: 100vh;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); 
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     padding-top: 30px;
   }
   
@@ -39,15 +40,15 @@
     padding: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for a floating effect */
     margin-bottom: 20px; /* Spacing between cards */
+    transition: box-shadow 0.2s ease-in-out; /* Smooth shadow transition */
+  }
+  
+  .task-card:hover {
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15); /* Enhance hover effect */
   }
   
   /* Typography adjustments */
-  h2 {
-    font-weight: 600;
-    color: #1b1b1b;
-  }
-  
-  h5 {
+  h2, h5 {
     font-weight: 600;
     color: #1b1b1b;
   }
