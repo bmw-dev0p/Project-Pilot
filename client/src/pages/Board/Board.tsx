@@ -1,6 +1,6 @@
 
 import Dashboard from '../../components/Dashboard'; 
-import Sidebar from '../../components/Sidebar'; 
+import Sidebar from '../../components/Sidebar/Sidebar'; 
 import Container from 'react-bootstrap/Container'; 
 
 import "./Board.css";
