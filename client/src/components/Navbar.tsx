@@ -46,8 +46,10 @@ const NavigationBar = () => {
                   {/* Render Sign Up and Login buttons if the user is not logged in */}
                   {/* <Button variant="outline-primary" className="me-2" as={Link} to="/signup">Sign Up</Button>
                   <Button variant="outline-success" as={Link} to="/login">Login</Button> */}
-                   <Nav.Link as={Link} to="/signup">Signup</Nav.Link>
-                   <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                   {/* <Nav.Link as={Link} to="/signup">Signup</Nav.Link> */}
+                   {/* <Nav.Link as={Link} to="/login">Login</Nav.Link> */}
+                   <p>logo here?</p>
+                   
                 </>
               ) : (
                 <Button variant="outline-danger" onClick={() => auth.logout()}>Logout</Button>
