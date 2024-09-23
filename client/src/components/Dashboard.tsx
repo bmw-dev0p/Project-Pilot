@@ -57,6 +57,7 @@ function Dashboard() {
       {statuses.length > 0 ? statuses.map((status) => (
       <TaskColumn 
       key={status.id}
+      id={status.id}
       title={status.title}
       update={statusUpdate}
       delete={statusDelete}

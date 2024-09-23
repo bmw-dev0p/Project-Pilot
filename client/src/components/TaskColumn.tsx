@@ -18,6 +18,7 @@ import { TaskData } from '../interfaces/TaskData';
 
 interface TaskColumnProps {
   key: number
+  id:number
   title: string;
   update: (statusId: number, statusBody: StatusData) => Promise<StatusData | undefined>;
 
@@ -25,7 +26,7 @@ interface TaskColumnProps {
   initialTasks?: TaskData[];
 }
 
-const TaskColumn: React.FC<TaskColumnProps> = ({ key, title }) => {
+const TaskColumn: React.FC<TaskColumnProps> = ({ key, id, title }) => {
   const [tasks, setTasks] = useState<TaskData[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [currentTask, setCurrentTask] = useState<TaskData | null>(null);
@@ -100,7 +101,9 @@ try {
           + Create issue
         </div>
       ) : (
-        tasks.map((task) => (
+        tasks
+        .filter(task => task.status_id === id)
+        .map((task) => (
           <TaskCard key={task.id} task={task} onEdit={() => openModal(task)} />
         ))
       )}
