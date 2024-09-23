@@ -1,0 +1,257 @@
+/* Hide the columns */
+.task-column.hidden {
+    display: block;
+  }
+  
+  /* Column header styling */
+  .header-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .column-header {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .color-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  
+  .column-name {
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .add-task-button,
+  .add-column-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 5px;
+    padding: 5px;
+  }
+  
+  /* Additional styling for task cards */
+  .task-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  
+  /* Task card footer styling */
+  .task-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .user-icon {
+    font-size: 14px;
+    color: #1b1b1b;
+  }
+  
+  .edit-icon {
+    font-size: 14px;
+    color: #1b1b1b;
+    cursor: pointer;
+  }
+  /* Styles for the remove column button */
+.remove-column-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: red;
+    margin-left: auto; /* Align to the right */
+    padding: 5px;
+  }
+  /* Adjust the board container to display columns inline */
+.board-container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start; /* Align columns to the top */
+  }
+  
+  /* Style for the Add Column button */
+  .add-column-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+  }
+  /* Adjust the board container to display columns inline */
+.board-container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  
+  /* Style for the task column */
+  .task-column {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 800px; /* Increase column height */
+    overflow-y: auto;
+  }
+  
+  /* Styles for the Add Column button */
+  .add-column-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+  }
+  
+  /* Create task placeholder */
+  /* .create-task-placeholder {
+    background: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+  }
+   */
+  /* .create-task-placeholder:hover {
+    opacity: 1;
+  } */
+  
+  /* Add task button below each task */
+  /* .add-task-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  } */
+  /* Adjust the overall page to prevent scrolling */
+.app {
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Prevent page scrolling */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Adjust the board container to display columns inline and prevent overflow */
+  .board-container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    height: 100%; /* Make sure it takes the full available height */
+    overflow-x: auto; /* Allow horizontal scrolling for columns if needed */
+    overflow-y: hidden; /* Prevent vertical scrolling */
+  }
+  
+  /* Style for the task column */
+  .task-column {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: calc(100vh - 150px); /* Dynamically adjust based on the viewport height */
+    max-height: 100%; /* Prevent exceeding the parent container height */
+    overflow-y: auto; /* Allow scrolling within the column if needed */
+    flex-grow: 1; /* Allow the column to grow and fill the space */
+  }
+  
+  /* Add Column Button positioned inline with the last column */
+  .add-column-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    position: relative;
+    bottom: 10px; /* Slightly adjust if necessary to align visually */
+  }
+  
+  /* Create task placeholder */
+  .create-task-placeholder {
+    background: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    align-self: flex-start; /* Align placeholder at the top */
+  }
+  
+  .create-task-placeholder:hover {
+    opacity: 1;
+  }
+  
+  /* Add task button below each task */
+  .add-task-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  
+  
+  
+  

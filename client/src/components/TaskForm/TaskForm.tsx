@@ -1,22 +1,6 @@
-// src/components/TaskForm.tsx
-import { useState } from 'react';
-
-interface TaskFormProps {
-  onSubmit: (task: Task) => void;
-  onDelete: (taskId: string) => void;
-  onClose: () => void;
-  initialTask?: Task;
-}
-
-interface Task {
-  id: string;
-  title: string;
-  description: string;
-  dueDate: string;
-  assignedUsers: string[];
-}
-
-const users = ['Nadia Hashemi', 'Unassigned']; // Example users list
+// TaskForm.tsx
+import React, { useState } from 'react';
+import { Task, TaskFormProps } from '../../interfaces/Types';
 
 const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onDelete, onClose, initialTask }) => {
   const [title, setTitle] = useState(initialTask?.title || '');
@@ -81,7 +65,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onDelete, onClose, initia
           onChange={(e) => setAssignedUser(e.target.value)}
           className="task-input"
         >
-          {users.map((user) => (
+          {['Nadia Hashemi', 'Unassigned'].map((user) => (
             <option key={user} value={user}>
               {user}
             </option>
