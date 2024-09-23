@@ -12,12 +12,7 @@
   };
   
   // Define the TaskFormProps interface for the TaskForm component
-  export interface TaskFormProps {
-    onSubmit: (task: Task) => void;
-    onDelete: (taskId: string) => void;
-    onClose: () => void;
-    initialTask?: Task | null; // Allow both undefined and null for initialTask
-  }
+
 // In your Types.tsx or wherever you define TaskData
 export interface Task {
     id: number;

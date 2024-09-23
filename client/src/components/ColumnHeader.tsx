@@ -1,4 +1,4 @@
-// src/components/ColumnHeader.tsx
+
 import React, { useState } from 'react';
 
 interface ColumnHeaderProps {
