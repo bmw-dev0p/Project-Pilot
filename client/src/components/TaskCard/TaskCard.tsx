@@ -1,21 +1,24 @@
 // src/components/TaskCard.tsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaPen } from 'react-icons/fa'; // Importing Font Awesome icon for editing
-
-interface Task {
-  id: string;
-  title: string;
-  description: string;
-  dueDate: string;
-  assignedUsers: string[];
-}
+import { TaskData } from '../../interfaces/TaskData';
+import { retrieveUser } from '../../api/userAPI';
+import { UserData } from '../../interfaces/UserData';
 
 interface TaskCardProps {
-  task: Task;
-  onEdit: (task: Task) => void;
+  task: TaskData;
+  onEdit: (task: TaskData) => void;
 }
 
 const TaskCard: React.FC<TaskCardProps> = ({ task, onEdit }) => {
+  const [currentUser, setCurrentUser] = useState<UserData | null>(null);
+
+  useEffect(() => {
+    if (task.user_id !== undefined && task.user_id !== null) {
+      retrieveUser(task.user_id).then(setCurrentUser);
+    }
+  }, [task.user_id]);
+
   return (
     <div className="task-card" onClick={() => onEdit(task)}>
       {/* Removed the img tag since it's not needed */}
@@ -30,14 +33,13 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onEdit }) => {
           }}
         />
         <div className="task-assigned-users">
-          {task.assignedUsers.map((user, index) => (
+          {currentUser && (
             <img
-              key={index}
-              src={`path/to/user/${user}.jpg`} // Example placeholder for user avatars
-              alt={user}
+              src={currentUser.img} // Example placeholder for user avatars
+              alt={`${currentUser.fname}'s Profile`}
               className="assigned-user-avatar"
             />
-          ))}
+          )}
         </div>
       </div>
     </div>

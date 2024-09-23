@@ -1,4 +1,4 @@
 export interface StatusData {
-    id: number | null;
-    title: string | null;
+    id: number;
+    title: string;
   }
