@@ -46,6 +46,7 @@ console.log(assignedUser);
       console.log(`Comparing ${user.username} with ${assignedUser}`);
       return user.username === assignedUser;
     });
+    console.log(`This is the user: ${user}`);
     const updatedTask: Task = {
       id: initialTask?.id ?? 0,
       title,
@@ -120,6 +121,7 @@ console.log(assignedUser);
           onChange={(e) => setAssignedUser(e.target.value)}
           className="task-input"
         >
+          {/* <option disabled selected>Select Username from Below</option> */}
           {users.map((user) => (
             <option key={user.id} value={`${user.username}`}>
               {`${user.username}`}

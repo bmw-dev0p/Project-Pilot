@@ -53,6 +53,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ key, id, title }) => {
 
   const editTask = async (updatedTask: TaskData) => {
 try {
+  console.log(updatedTask);
   const body = {
     id: updatedTask.id,
     title: updatedTask.title,
