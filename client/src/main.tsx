@@ -11,6 +11,7 @@ import Login from './pages/Login.tsx';
 import SignUp from './pages/Signup.tsx';
 import Board from './pages/Board/Board.tsx';
 import User from './pages/User.tsx';
+import About from './pages/About.tsx';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: '/user',
         element: <User />
+      },
+      {
+        path: '/about',
+        element: <About />
       },
     ]
   }
