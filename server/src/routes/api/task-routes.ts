@@ -37,8 +37,8 @@ router.get('/:id', async (req: Request, res: Response) => {
 router.post('/', async (req: Request, res: Response) => {
     console.log('post new task');
     try {
-        const { name, description, status_id, user_id } = req.body;
-        const newTask = await Task.create({ name, description, status_id, user_id });
+        const { title, description, dueDate, status_id, user_id } = req.body;
+        const newTask = await Task.create({ title, description, dueDate, status_id, user_id });
         console.log(newTask);
         res.json({ newTask })
     }
@@ -52,12 +52,13 @@ router.put('/:id', async (req: Request, res: Response) => {
     console.log('update task by id');
 
     const { id } = req.params;
-    const { name, description, status_id, user_id } = req.body;
+    const { title, description, dueDate, status_id, user_id } = req.body;
     try {
         const task = await Task.findByPk(id);
         if (task) {
-            task.name = name;
+            task.title = title;
             task.description = description;
+            task.dueDate = dueDate;
             task.status_id = status_id;
             task.user_id = user_id;
             await task.save();

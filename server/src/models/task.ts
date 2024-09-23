@@ -7,8 +7,9 @@ import type { Status } from './status.js';
 // Define the attributes for the User model
 interface TaskAttributes {
     id: number;
-    name: string;
+    title: string;
     description: string;
+    dueDate: string;
     status_id: number;
     user_id: number;
 }
@@ -19,8 +20,9 @@ interface TaskCreationAttributes extends Optional<TaskAttributes, 'id'> { }
 // Define the User class extending Sequelize's Model
 export class Task extends Model<InferAttributes<Task>, TaskCreationAttributes> implements TaskAttributes {
     public id!: number;
-    public name!: string;
+    public title!: string;
     public description!: string;
+    public dueDate!: string;
     public status_id!: ForeignKey<Status['id']>;
     public user_id!: ForeignKey<User['id']>;
 }
@@ -34,13 +36,25 @@ export function TaskFactory(sequelize: Sequelize): typeof Task {
                 autoIncrement: true,
                 primaryKey: true,
             },
-            name: {
+            title: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
             description: {
                 type: DataTypes.STRING,
-                allowNull: false,
+                allowNull: true,
+            },
+            dueDate: {
+                type: DataTypes.STRING,
+                allowNull: true,
+            },
+            status_id: {
+                type: DataTypes.INTEGER,
+                allowNull: true,
+            },
+            user_id: {
+                type: DataTypes.INTEGER,
+                allowNull: true,
             }
         },
         {

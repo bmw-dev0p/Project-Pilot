@@ -6,6 +6,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
+import logo from '../assets/pilot-logo.png';
+import '../index.css';
+
+
+
+
 const NavigationBar = () => {
   // State to track the login status
   const [loginCheck, setLoginCheck] = useState(false);
@@ -34,6 +40,7 @@ const NavigationBar = () => {
           <Nav className="me-auto">
             {/* Add navigation links if needed */}
             <Nav.Link as={Link} to="/">Home</Nav.Link>
+            <Nav.Link as={Link} to="/about">About</Nav.Link>
             <Nav.Link as={Link} to="/board">Board</Nav.Link>
           </Nav>
 
@@ -46,11 +53,16 @@ const NavigationBar = () => {
                   {/* Render Sign Up and Login buttons if the user is not logged in */}
                   {/* <Button variant="outline-primary" className="me-2" as={Link} to="/signup">Sign Up</Button>
                   <Button variant="outline-success" as={Link} to="/login">Login</Button> */}
-                   <Nav.Link as={Link} to="/signup">Signup</Nav.Link>
-                   <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                   {/* <Nav.Link as={Link} to="/signup">Signup</Nav.Link> */}
+                   {/* <Nav.Link as={Link} to="/login">Login</Nav.Link> */}
+                   <img className='logo-small' src={logo} alt='pilot-logo' />
+                   
                 </>
               ) : (
+                <>
+                <img className='logo-small' src={logo} alt='pilot-logo' />
                 <Button variant="outline-danger" onClick={() => auth.logout()}>Logout</Button>
+                </>
               )
             }
           </div>
