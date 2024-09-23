@@ -1,12 +1,4 @@
 
-export interface Task {
-    id: string;
-    title: string;
-    description: string;
-    dueDate: string;
-    assignedUsers: string[];
-  }
-  
   // Define the Column interface with the optional color property
   export interface Column {
     name: string;
@@ -26,4 +18,22 @@ export interface Task {
     onClose: () => void;
     initialTask?: Task | null; // Allow both undefined and null for initialTask
   }
+// In your Types.tsx or wherever you define TaskData
+export interface Task {
+    id: number;
+    title: string;
+    description: string;
+    dueDate: string;
+    assignedUsers: string[]; // Ensure this matches the expected property
+  }
+  
+  // Update TaskData to include assignedUsers
+  export interface TaskData {
+    id: number;
+    title: string;
+    description: string;
+    dueDate: string;
+    assignedUsers: string[]; // Add this property to match Task
+  }
+  
   

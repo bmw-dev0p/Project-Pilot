@@ -1,50 +1,46 @@
-// TaskForm.tsx
-// src/components/TaskForm.tsx
-import { useState,useEffect } from 'react';
-import { TaskData } from '../../interfaces/TaskData';
+// src/components/TaskForm/TaskForm.tsx
+import { useState, useEffect } from 'react';
+import { Task } from '../../interfaces/Types'; // Ensure you import the correct type
 import { retrieveUsers } from '../../api/userAPI';
 import { UserData } from '../../interfaces/UserData';
 
 interface TaskFormProps {
-  onSubmit: (task: TaskData) => void;
+  onSubmit: (task: Task) => void; // Change TaskData to Task here
   onDelete: (taskId: number) => void;
   onClose: () => void;
-  initialTask?: TaskData | null;
+  initialTask?: Task | null; // Use Task type to ensure consistency
 }
-
-interface Task {
-  id: number;
-  title: string;
-  description: string;
-  dueDate: string;
-  assignedUser: string;
-}
-
 
 const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onDelete, onClose, initialTask }) => {
   const [users, setUsers] = useState<UserData[]>([]);
+
   useEffect(() => {
     const fetchUsers = async () => {
-      const usersList = await retrieveUsers();
-      setUsers(usersList);
+      try {
+        const usersList = await retrieveUsers();
+        setUsers(usersList);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
     };
-  
+
     fetchUsers();
   }, []);
+
   const [title, setTitle] = useState(initialTask?.title || '');
   const [description, setDescription] = useState(initialTask?.description || '');
   const [dueDate, setDueDate] = useState(initialTask?.dueDate || '');
-  const [assignedUser, setAssignedUser] = useState(initialTask?.assignedUser || 'Unassigned');
+  const [assignedUser, setAssignedUser] = useState(initialTask?.assignedUsers[0] || 'Unassigned');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     const updatedTask: Task = {
-      id: initialTask?.id ?? 0,
+      id: initialTask?.id ?? Date.now(),
       title,
       description,
       dueDate,
-      assignedUser: assignedUser,
+      assignedUsers: [assignedUser], // Ensure it's an array to match Task type
     };
 
     onSubmit(updatedTask);
@@ -70,32 +66,33 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onDelete, onClose, initia
         <input
           type="text"
           placeholder="Title"
-          value={title}
+          value={title || ''}
           onChange={(e) => setTitle(e.target.value)}
           required
           className="task-input"
         />
         <textarea
           placeholder="Description"
-          value={description}
+          value={description || ''}
           onChange={(e) => setDescription(e.target.value)}
           className="task-textarea"
         />
         <input
           type="date"
-          value={dueDate}
+          value={dueDate || ''}
           onChange={(e) => setDueDate(e.target.value)}
           className="task-input"
         />
         <label>Assign User:</label>
         <select
-          value={assignedUser}
+          value={assignedUser || ''}
           onChange={(e) => setAssignedUser(e.target.value)}
           className="task-input"
         >
+          <option value="Unassigned">Unassigned</option>
           {users.map((user) => (
-            <option key={user.id} value={`${user.username}`}>
-              {`${user.username}`}
+            <option key={user.id} value={user.username}>
+              {user.username}
             </option>
           ))}
         </select>

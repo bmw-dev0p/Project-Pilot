@@ -137,39 +137,6 @@
     margin-left: 10px;
   }
   
-  /* Create task placeholder */
-  /* .create-task-placeholder {
-    background: transparent;
-    border: none;
-    color: #007bff;
-    cursor: pointer;
-    display: block;
-    margin-top: 10px;
-    font-size: 16px;
-    opacity: 0.7;
-    transition: opacity 0.3s;
-  }
-   */
-  /* .create-task-placeholder:hover {
-    opacity: 1;
-  } */
-  
-  /* Add task button below each task */
-  /* .add-task-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 20px;
-    height: 30px;
-    width: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-  } */
-  /* Adjust the overall page to prevent scrolling */
 .app {
     height: 100vh; /* Full viewport height */
     overflow: hidden; /* Prevent page scrolling */
@@ -235,21 +202,64 @@
     opacity: 1;
   }
   
-  /* Add task button below each task */
-  .add-task-button {
-    background-color: #007bff;
-    color: white;
+ 
+  /* CSS for the task card */
+.task-card {
+    background-color: #ffffff;
     border: none;
-    border-radius: 50%;
-    cursor: pointer;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    position: relative; /* Make the task card relative for positioning the add button */
+  }
+  
+  /* Style for the + add-task-button */
+  .add-task-button {
+    display: none; /* Initially hidden */
+    background-color: transparent;
+    border: none;
+    color: #7a7a7a; /* Gray color */
     font-size: 20px;
-    height: 30px;
-    width: 30px;
+    cursor: pointer;
+    transition: color 0.2s;
+    position: absolute;
+    bottom: -10px; /* Position at the bottom of the task card */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .task-column:hover .add-task-button {
+    display: block; /* Show the button when hovering over the task column */
+  }
+  
+  .task-card:hover .add-task-button {
+    display: block; /* Show the button when hovering over the task card */
+  }
+  
+  /* Hover effect to change the color of the + button */
+  .add-task-button:hover {
+    color: #4a4a4a; /* Slightly darker gray on hover */
+  }
+  
+  /* Style when there's no task in the column */
+  .create-task-placeholder {
+    background: transparent;
+    border: none;
+    color: #7a7a7a;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 10px 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
   }
+  
+  .create-task-placeholder:hover {
+    color: #4a4a4a; /* Slightly darker gray on hover */
+  }
+  
+  
   
   
   

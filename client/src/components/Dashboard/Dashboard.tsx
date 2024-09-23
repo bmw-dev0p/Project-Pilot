@@ -31,11 +31,7 @@ const Dashboard: React.FC = () => {
     const destItems = [...destColumn.items];
     const [removed] = sourceItems.splice(source.index, 1);
 
-    if (sourceColumn === destColumn) {
-      destItems.splice(destination.index, 0, removed);
-    } else {
-      destItems.splice(destination.index, 0, removed);
-    }
+    destItems.splice(destination.index, 0, removed);
 
     setColumns({
       ...columns,
@@ -55,9 +51,10 @@ const Dashboard: React.FC = () => {
 
     const existingTaskIndex = columns[currentColumn].items.findIndex((t) => t.id === task.id);
 
-    const updatedItems = existingTaskIndex !== -1
-      ? columns[currentColumn].items.map((t) => (t.id === task.id ? task : t))
-      : [...columns[currentColumn].items, task];
+    const updatedItems =
+      existingTaskIndex !== -1
+        ? columns[currentColumn].items.map((t) => (t.id === task.id ? task : t))
+        : [...columns[currentColumn].items, task];
 
     setColumns({
       ...columns,
@@ -69,7 +66,7 @@ const Dashboard: React.FC = () => {
     setShowTaskForm(false);
   };
 
-  const handleTaskDelete = (taskId: string) => {
+  const handleTaskDelete = (taskId: number) => {
     setColumns({
       ...columns,
       [currentColumn]: {
@@ -125,15 +122,13 @@ const Dashboard: React.FC = () => {
                     <FaMinus />
                   </button>
                 </div>
-                {/* Placeholder for creating the first task */}
                 {column.items.length === 0 && (
                   <button className="create-task-placeholder" onClick={() => handleAddTask(columnId)}>
                     + Create Task
                   </button>
                 )}
-                {/* Render Tasks */}
                 {column.items.map((task, index) => (
-                  <Draggable key={task.id} draggableId={task.id} index={index}>
+                  <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
                     {(provided) => (
                       <div
                         ref={provided.innerRef}
@@ -154,11 +149,14 @@ const Dashboard: React.FC = () => {
                             }}
                           />
                         </div>
+                        {/* Add button below the task card */}
+                        <button className="add-task-button" onClick={() => handleAddTask(columnId)}>
+                          +
+                        </button>
                       </div>
                     )}
                   </Draggable>
                 ))}
-                {/* Button to add new task after each task */}
                 <button className="add-task-button" onClick={() => handleAddTask(columnId)}>
                   +
                 </button>
@@ -167,7 +165,6 @@ const Dashboard: React.FC = () => {
             )}
           </Droppable>
         ))}
-        {/* Add Column Button */}
         <button className="add-column-button" onClick={handleAddColumn}>
           +
         </button>
