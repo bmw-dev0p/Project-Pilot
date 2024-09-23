@@ -70,3 +70,73 @@
     margin-bottom: 15px;
   }
   
+
+  /* HOME PAGE STYLES  */
+  .pilot-logo {
+    width: 750px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+
+  @font-face {
+    font-family: 'futuristic';
+    src: url(./fonts/ethnocentric.rg-regular.otf);
+  }
+
+  .header {
+    font-family: 'futuristic';
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .sub-header {
+    font-family: 'futuristic';
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  /* BUTTONS  */
+
+/* CSS */
+.btn-home {
+  align-items: center;
+  background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  display: inline-flex;
+  font-family: 'futuristic';
+  height: 55px;
+  width: 175px;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 30px;
+  transition: box-shadow .15s,transform .15s;
+  font-size: 18px;
+}
+
+.btn-home:focus {
+  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+.btn-home:hover {
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.btn-home:active {
+  box-shadow: #3c4fe0 0 3px 7px inset;
+  transform: translateY(2px);
+}
