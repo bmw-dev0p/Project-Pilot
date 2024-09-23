@@ -1,6 +1,6 @@
 import { seedUsers } from './user-seeds.js';
 import { seedTasks } from './task-seeds.js';
-import { seedStatus } from './status-seeds.js'
+import { seedStatus } from './status-seeds.js';
 import sequelize from '../config/connection.js';
 
 const seedAll = async (): Promise<void> => {
@@ -8,8 +8,8 @@ const seedAll = async (): Promise<void> => {
     await sequelize.sync({ force: true });
     console.log('\n----- DATABASE SYNCED -----\n');
     
-    await seedUsers();
-    console.log('\n----- USERS SEEDED -----\n');
+    const seededUsers = await seedUsers(); // Get the seeded users
+    console.log('\n----- USERS SEEDED -----\n', seededUsers); // Log the users
 
     await seedStatus();
     console.log('\n----- STATUS SEEDED -----\n');
