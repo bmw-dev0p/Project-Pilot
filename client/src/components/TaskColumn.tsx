@@ -61,12 +61,16 @@ try {
     status_id: key,
     user_id: updatedTask.user_id
   };
-  const data = await updateTask(body.id, body);
-  fetchTasks();
-  return data
-} catch (err) {
-  console.error('Failed to edit task', err)
-}
+  if (body.id !== undefined) {
+    const data = await updateTask(body.id, body);
+    fetchTasks();
+    return data;
+  } else {
+    throw new Error('Task ID is undefined');
+  }
+  } catch (err) {
+    console.error('Failed to edit task', err)
+  }
   };
 
   const removeTask = async (taskId: number): Promise<ApiMessage> => {
@@ -117,6 +121,7 @@ try {
           onDelete={removeTask}
           onClose={() => setShowForm(false)}
           initialTask={currentTask}
+          statusId={id}
         />
       )}
     </div>
