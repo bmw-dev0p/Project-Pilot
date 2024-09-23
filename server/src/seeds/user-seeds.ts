@@ -1,4 +1,6 @@
 import { User } from '../models/userFactory.js'; // Import your Sequelize User model
+// import { UserLogin } from '../../../client/src/interfaces/UserLogin.js';
+
 
 // Define the structure of the data returned by randomuser.me API
 interface RandomUserAPI {
@@ -8,7 +10,8 @@ interface RandomUserAPI {
     picture: { large: string };
 }
 
-// Define the attributes interface for the User model
+// tried to import predefined userLogin interface but it was not working
+// redefined the attributes interface matching the User model
 export interface UserAttributes {
   fname: string;
   lname: string;
@@ -26,6 +29,7 @@ export const seedUsers = async () => {
     return data.results;
   };
 
+  // kept original users for testing purposes
   const hardcodedUsers: UserAttributes[] = [
     { 
       fname: 'Jolly', 
@@ -53,6 +57,7 @@ export const seedUsers = async () => {
     }
   ];
 
+  // Fetch random users and map them to new array using the UserAttributes interface
   const randomUsers = await fetchRandomUsers();
   const apiUsers: UserAttributes[] = randomUsers.map((user: RandomUserAPI) => ({
     fname: user.name.first,
@@ -63,6 +68,7 @@ export const seedUsers = async () => {
     img: user.picture.large
   }));
 
+  // Combine the two user arrays and seed them 
   const usersToSeed = [...hardcodedUsers, ...apiUsers];
   await User.bulkCreate(usersToSeed, { individualHooks: true });
 
