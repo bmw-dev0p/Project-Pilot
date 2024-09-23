@@ -1,38 +1,49 @@
 // src/components/TaskForm.tsx
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+import { TaskData } from '../../interfaces/TaskData';
+import { retrieveUsers } from '../../api/userAPI';
+import { UserData } from '../../interfaces/UserData';
 
 interface TaskFormProps {
-  onSubmit: (task: Task) => void;
-  onDelete: (taskId: string) => void;
+  onSubmit: (task: TaskData) => void;
+  onDelete: (taskId: number) => void;
   onClose: () => void;
-  initialTask?: Task;
+  initialTask?: TaskData | null;
 }
 
 interface Task {
-  id: string;
+  id: number;
   title: string;
   description: string;
   dueDate: string;
-  assignedUsers: string[];
+  assignedUser: string;
 }
 
-const users = ['Nadia Hashemi', 'Unassigned']; // Example users list
 
 const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onDelete, onClose, initialTask }) => {
+  const [users, setUsers] = useState<UserData[]>([]);
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const usersList = await retrieveUsers();
+      setUsers(usersList);
+    };
+  
+    fetchUsers();
+  }, []);
   const [title, setTitle] = useState(initialTask?.title || '');
   const [description, setDescription] = useState(initialTask?.description || '');
   const [dueDate, setDueDate] = useState(initialTask?.dueDate || '');
-  const [assignedUser, setAssignedUser] = useState(initialTask?.assignedUsers[0] || 'Unassigned');
+  const [assignedUser, setAssignedUser] = useState(initialTask?.assignedUser || 'Unassigned');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     const updatedTask: Task = {
-      id: initialTask?.id || `task-${Date.now()}`,
+      id: initialTask?.id ?? 0,
       title,
       description,
       dueDate,
-      assignedUsers: [assignedUser],
+      assignedUser: assignedUser,
     };
 
     onSubmit(updatedTask);
@@ -82,8 +93,8 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onDelete, onClose, initia
           className="task-input"
         >
           {users.map((user) => (
-            <option key={user} value={user}>
-              {user}
+            <option key={user.id} value={`${user.username}`}>
+              {`${user.username}`}
             </option>
           ))}
         </select>

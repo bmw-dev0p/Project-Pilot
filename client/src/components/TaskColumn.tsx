@@ -1,45 +1,91 @@
 // src/components/TaskColumn.tsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TaskCard from './TaskCard/TaskCard';
 import TaskForm from './TaskForm/TaskForm';
+import { StatusData } from '../interfaces/StatusData';
+import { ApiMessage } from '../interfaces/ApiMessage';
+import { retrieveTasks, createTask, updateTask, deleteTask } from '../api/taskAPI';
+import { TaskData } from '../interfaces/TaskData';
 
-interface Task {
-  id: string;
-  title: string;
-  description: string;
-  dueDate: string;
-  assignedUsers: string[];
-}
+// interface Task {
+//   id: string;
+//   title: string;
+//   description?: string;
+//   dueDate?: string;
+//   status?: number;
+//   assignedUser?: number;
+// }
 
 interface TaskColumnProps {
+  key: number
   title: string;
-  initialTasks?: Task[];
+  update: (statusId: number, statusBody: StatusData) => Promise<StatusData | undefined>;
+
+  delete: (statusId: number) => Promise<ApiMessage>;
+  initialTasks?: TaskData[];
 }
 
-const TaskColumn: React.FC<TaskColumnProps> = ({ title, initialTasks = [] }) => {
-  const [tasks, setTasks] = useState<Task[]>(initialTasks);
+const TaskColumn: React.FC<TaskColumnProps> = ({ key, title }) => {
+  const [tasks, setTasks] = useState<TaskData[]>([]);
   const [showForm, setShowForm] = useState(false);
-  const [currentTask, setCurrentTask] = useState<Task | null>(null);
+  const [currentTask, setCurrentTask] = useState<TaskData | null>(null);
 
-  const addTask = (newTask: Task) => {
-    setTasks((prevTasks) => [...prevTasks, newTask]);
+  const fetchTasks = async() => {
+    try {
+      const data = await retrieveTasks();
+      setTasks(data);
+      console.log(data);
+    } catch (err) {
+      console.error('Failed to retrieve tasks', err);
+    }
+  }
+
+  const addTask = async (newTask: TaskData) => {
+    try {
+      const data = await createTask(newTask);
+      fetchTasks();
+      return data
+    } catch(err) {
+      console.error('Failed to add task', err);
+    }
   };
 
-  const editTask = (updatedTask: Task) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
-    );
+  const editTask = async (updatedTask: TaskData) => {
+try {
+  const body = {
+    id: updatedTask.id,
+    title: updatedTask.title,
+    description: updatedTask.description,
+    dueDate: updatedTask.dueDate,
+    status_id: key,
+    user_id: updatedTask.user_id
+  };
+  const data = await updateTask(body.id, body);
+  fetchTasks();
+  return data
+} catch (err) {
+  console.error('Failed to edit task', err)
+}
   };
 
-  const deleteTask = (taskId: string) => {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+  const removeTask = async (taskId: number): Promise<ApiMessage> => {
+    try {
+      const data = await deleteTask(taskId);
+      fetchTasks();
+      return data
+    } catch (err) {
+      return Promise.reject(err)
+    }
   };
 
-  const openModal = (task?: Task) => {
+  const openModal = (task?: TaskData) => {
     setCurrentTask(task || null);
     setShowForm(true);
   };
 
+  useEffect(() => {
+    fetchTasks();
+  }, []);
   return (
     <div className="task-column">
       <div className="column-header">
@@ -61,13 +107,13 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ title, initialTasks = [] }) => 
 
       {showForm && (
         <TaskForm
-          onSubmit={(task) => {
+          onSubmit={(task:TaskData) => {
             currentTask ? editTask(task) : addTask(task);
             setShowForm(false);
           }}
-          onDelete={deleteTask}
+          onDelete={removeTask}
           onClose={() => setShowForm(false)}
-          initialTask={currentTask || undefined}
+          initialTask={currentTask}
         />
       )}
     </div>

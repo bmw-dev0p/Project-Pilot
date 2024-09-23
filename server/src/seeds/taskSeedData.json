@@ -1,37 +1,43 @@
 [
     {
-        "name": "Task 1",
+        "title": "Task 1",
         "description": "JollyGuru's sample task 1",
+        "dueDate": "January 10, 2025",
         "status_id": 1,
         "user_id": 1
     },
     {
-        "name": "Task 2",
+        "title": "Task 2",
         "description": "SunnyScribe's sample task 1",
+        "dueDate": "October 10, 2024",
         "status_id": 4,
         "user_id": 2
     },
     {
-        "name": "Task 3",
+        "title": "Task 3",
         "description": "JollyGuru's sample task 2",
+        "dueDate": "October 31, 2024",
         "status_id": 2,
         "user_id": 1
     },
     {
-        "name": "Task 4",
+        "title": "Task 4",
         "description": "SunnyScribe's sample task 2",
+        "dueDate": "November 20, 2024",
         "status_id": 3,
         "user_id": 2
     },
     {
-        "name": "Task 5",
+        "title": "Task 5",
         "description": "RadiantComet's sample task 1",
+        "dueDate": "December 25, 2024",
         "status_id": 1,
         "user_id": 3
     },
     {
-        "name": "Task 6",
+        "title": "Task 6",
         "description": "RadiantComet's sample task 2",
+        "dueDate": "December 1, 2024",
         "status_id": 3,
         "user_id": 3
     }
