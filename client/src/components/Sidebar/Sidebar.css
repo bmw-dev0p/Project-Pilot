@@ -1,12 +1,12 @@
 
 .sidebar {
   width: 70px; /* Fixed sidebar width */
-  height: 95vh; /* Adjusted height to be a bit less than full viewport height */
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Space out the top and bottom sections */
   align-items: center;
+  gap: 16px;
   padding: 20px 0;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 30px; /* Rounded sidebar shape */
@@ -17,7 +17,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 120px; /* Increased gap to space out the top icons more */
+  justify-content: space-between;
+  flex: 1;
+
   margin-top: 30px; /* Add some more margin at the top */
   width: 100%; /* Ensure the icons stay aligned within the sidebar */
 }
