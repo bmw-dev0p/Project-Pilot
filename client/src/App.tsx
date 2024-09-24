@@ -13,7 +13,7 @@ function App() {
         <Navbar />
 
         {/* Main content area */}
-        <main className="container pt-5">
+        <main className="app-container">
           <Outlet /> {/* This allows React Router to load other pages */}
         </main>
       </div>
