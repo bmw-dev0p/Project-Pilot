@@ -35,8 +35,34 @@ class AuthService {
       return null; // Return null on error
     }
   }
-
+  async updateUserProperties(userId: number, updatedUser: { username: string; password: string }): Promise<UserLogin | null> {
+    const token = this.getToken();
+    if (!token) {
+      return null; // No token, not logged in
+    }
   
+    try {
+      // Send PUT request to update user by ID
+      const response = await fetch(`/users/${userId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,  // Pass token for authentication if needed
+        },
+        body: JSON.stringify(updatedUser),  // Send only the username and password
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to update user properties');
+      }
+  
+      const updatedUserResponse: UserLogin = await response.json();  // Get updated user data from response
+      return updatedUserResponse;  // Return updated user
+    } catch (error) {
+      console.error('Error updating user properties:', error);
+      return null;  // Return null on failure
+    }
+  }
 }
 
 // Export an instance of the AuthService class

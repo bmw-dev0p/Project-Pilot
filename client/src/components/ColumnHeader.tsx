@@ -12,6 +12,7 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = ({ name, color, onAddTask, onE
   const [isEditing, setIsEditing] = useState(false);
   const [columnName, setColumnName] = useState(name);
 
+
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setColumnName(e.target.value);
   };

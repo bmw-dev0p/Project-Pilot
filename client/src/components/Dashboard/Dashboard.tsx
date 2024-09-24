@@ -1,11 +1,17 @@
 // src/components/Dashboard.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import TaskForm from '../TaskForm/TaskForm';
 import ColumnHeader from '../ColumnHeader';
 import { Task, Columns } from '../../interfaces/Types';
-import { FaPen, FaUser, FaMinus } from 'react-icons/fa';
+import { FaPen, FaUser, FaMinus, FaSearch } from 'react-icons/fa'; // Import the search icon
 import './Dashboard.css';
+
+import { retrieveStatuses } from '../../api/statusAPI';
+import { retrieveTasks } from '../../api/taskAPI';
+import { StatusData } from '../../interfaces/StatusData';
+import { TaskData } from '../../interfaces/TaskData';
+
 // Initial setup of columns
 const initialColumns: Columns = {
   todo: { name: 'To Do', items: [], color: '#FF4D4D' },
@@ -13,36 +19,81 @@ const initialColumns: Columns = {
   inReview: { name: 'In Review', items: [], color: '#1E90FF' },
   done: { name: 'Done', items: [], color: '#32CD32' },
 };
+
+
 const Dashboard: React.FC = () => {
+  const [statuses, setStatuses] = useState<StatusData[]>([]);
+  const [tasks, setTasks] = useState<TaskData[]>([]);
+
+  useEffect(() => {
+    const fetchStatuses = async () => {
+      const data = await retrieveStatuses();
+      setStatuses(data)
+    };
+    const fetchTasks = async () => {
+      const data = await retrieveTasks();
+      setTasks(data)
+    }; 
+    fetchStatuses();
+    fetchTasks();
+  }, []
+  );
+        console.log('these are statuses before for loop:');
+    console.log(statuses);;
+  console.log(`these are tasks:`);
+  console.log(tasks);
+  
+  if (statuses) {
+    for (let i = 0; i < statuses.length; i++) {
+      const initialColumns = statuses[i];
+      console.log(`these are statuses after for loop:`);
+      console.log(initialColumns);
+      
+    } 
+  }
+  const initialColumns: Columns = {
+    todo: { name: 'To Do', items: [], color: '#FF4D4D' },
+    inProgress: { name: 'In Progress', items: [], color: '#FFA500' },
+    inReview: { name: 'In Review', items: [], color: '#1E90FF' },
+    done: { name: 'Done', items: [], color: '#32CD32' },
+  };
   const [columns, setColumns] = useState<Columns>(initialColumns);
   const [showTaskForm, setShowTaskForm] = useState(false);
   const [currentTask, setCurrentTask] = useState<Task | null>(null);
   const [currentColumn, setCurrentColumn] = useState<string>('');
+
   const onDragEnd = (result: DropResult) => {
     const { source, destination } = result;
     if (!destination) return;
+
     const sourceColumn = columns[source.droppableId];
     const destColumn = columns[destination.droppableId];
     const sourceItems = [...sourceColumn.items];
     const destItems = [...destColumn.items];
     const [removed] = sourceItems.splice(source.index, 1);
+
     destItems.splice(destination.index, 0, removed);
+
     setColumns({
       ...columns,
       [source.droppableId]: { ...sourceColumn, items: sourceItems },
       [destination.droppableId]: { ...destColumn, items: destItems },
     });
   };
+
   const handleAddTask = (columnId: string) => {
     setCurrentColumn(columnId);
     setCurrentTask(null);
     setShowTaskForm(true);
   };
+
   const handleTaskSubmit = (task: Task) => {
     if (!currentColumn || !columns[currentColumn]) return;
+
     const updatedItems = columns[currentColumn].items.some((t) => t.id === task.id)
       ? columns[currentColumn].items.map((t) => (t.id === task.id ? task : t))
       : [...columns[currentColumn].items, task];
+
     setColumns({
       ...columns,
       [currentColumn]: {
@@ -52,6 +103,7 @@ const Dashboard: React.FC = () => {
     });
     setShowTaskForm(false);
   };
+
   const handleTaskDelete = (taskId: number) => {
     setColumns({
       ...columns,
@@ -61,6 +113,7 @@ const Dashboard: React.FC = () => {
       },
     });
   };
+
   const handleColumnNameEdit = (columnId: string, newName: string) => {
     setColumns({
       ...columns,
@@ -70,6 +123,7 @@ const Dashboard: React.FC = () => {
       },
     });
   };
+
   const handleAddColumn = () => {
     const newColumnId = `column-${Date.now()}`;
     setColumns({
@@ -81,13 +135,27 @@ const Dashboard: React.FC = () => {
       },
     });
   };
+
   const handleRemoveColumn = (columnId: string) => {
     const updatedColumns = { ...columns };
     delete updatedColumns[columnId];
     setColumns(updatedColumns);
   };
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
+      {/* Add a search bar at the top right */}
+      <div className="dashboard-header">
+        <div className="search-bar-container">
+          <FaSearch className="search-icon" />
+          <input
+            type="text"
+            placeholder="Search"
+            className="search-bar"
+          />
+        </div>
+      </div>
+
       <div className="board-container">
         {Object.entries(columns).map(([columnId, column]) => (
           <Droppable droppableId={columnId} key={columnId}>
@@ -162,4 +230,5 @@ const Dashboard: React.FC = () => {
     </DragDropContext>
   );
 };
+
 export default Dashboard;
