@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 interface ColumnHeaderProps {
   name: string;
-  color: string;
+  color: string | undefined;
   onAddTask: () => void;
   onEditColumnName: (newName: string) => void;
 }
