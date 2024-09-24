@@ -1,8 +1,8 @@
 export interface UserData {
-    id: number | null;
-    fname: string | null;
-    lname: string | null;
+    id?: number | undefined;
+    fname?: string | undefined;
+    lname?: string | undefined;
     username: string;
-    email: string | null;
+    email?: string | undefined;
     img?: string
   }
