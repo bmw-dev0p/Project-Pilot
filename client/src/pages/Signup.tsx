@@ -2,8 +2,10 @@ import { useState, FormEvent, ChangeEvent, useEffect } from "react";
 import Auth from '../utils/auth';
 import { signUp } from "../api/authAPI";
 import { UserLogin } from "../interfaces/UserLogin";
+import '../index.css';
 // @ts-ignore
 import CloudinaryUploadWidget from '../components/Img-Upload';
+
 
 const SignUp = () => {
   const [signUpData, setSignUpData] = useState<UserLogin>({
@@ -15,7 +17,9 @@ const SignUp = () => {
     img: '',  // Holds the image URL
   });
 
+  const [imageUrl, setImageUrl] = useState<string | null>(null); // New state for image
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null); // For image upload success message
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -27,8 +31,8 @@ const SignUp = () => {
 
   const handleValidate = () => {
     const { fname, lname, username, email, password } = signUpData;
-    if (!fname || !lname || !username || !email || !password) {
-      setErrorMessage('Please fill out all fields before submitting');
+    if (!fname || !lname || !username || !email || !password || !imageUrl) {
+      setErrorMessage('Please fill out all fields, including the profile picture, before submitting');
       return false;
     }
     setErrorMessage(null);
@@ -44,15 +48,16 @@ const SignUp = () => {
     }
 
     try {
-      const data = await signUp(signUpData);
+      const data = await signUp({ ...signUpData, img: imageUrl || '' }); // Merge image URL before submitting
       Auth.login(data.token);
     } catch (err) {
       console.error('Failed to sign up', err);
     }
   };
 
-  const setImageUrl = (url: string) => {
-    setSignUpData({ ...signUpData, img: url });
+  const handleImageUpload = (url: string) => {
+    setImageUrl(url);
+    setSuccessMessage('Image upload successful!'); // Display success message
   };
 
   useEffect(() => {
@@ -60,12 +65,13 @@ const SignUp = () => {
   }, [signUpData]);
 
   return (
+    <div className="page-container">
     <section className='form-container'>
-      <form className='form sign-up-form' onSubmit={handleSubmit}>
-        <h1>Sign Up</h1>
+      <form className='form' onSubmit={handleSubmit}>
+        <h1 className="form-title">Sign Up</h1>
         {/* firstname */}
         <div className="form-group">
-          <label>First Name:</label>
+          <label className="form-label">First Name:</label>
           <input
             className="form-input"
             type='text'
@@ -76,7 +82,7 @@ const SignUp = () => {
         </div>
         {/* Last name */}
         <div className="form-group">
-          <label>Last Name:</label>
+          <label className="form-label">Last Name:</label>
           <input
             className="form-input"
             type='text'
@@ -87,7 +93,7 @@ const SignUp = () => {
         </div>
         {/* username */}
         <div className="form-group">
-          <label>Username:</label>
+          <label className="form-label">Username:</label>
           <input
             className="form-input"
             type='text'
@@ -98,7 +104,7 @@ const SignUp = () => {
         </div>
         {/* email */}
         <div className="form-group">
-          <label>Email:</label>
+          <label className="form-label">Email:</label>
           <input
             className="form-input"
             type='email'
@@ -109,7 +115,7 @@ const SignUp = () => {
         </div>
         {/* password */}
         <div className="form-group">
-          <label>Password:</label>
+          <label className="form-label">Password:</label>
           <input
             className="form-input"
             type='password'
@@ -120,12 +126,18 @@ const SignUp = () => {
         </div>
         {/* image upload */}
         <div className="form-group">
-          <label>Upload a profile picture</label>
-          <CloudinaryUploadWidget setImageUrl={setImageUrl} />
+          <label className="form-label-pic">Upload a profile picture</label>
+          <div className="page-container">
+          <CloudinaryUploadWidget setImageUrl={handleImageUpload} />
+          </div>
+          {successMessage && <p className="success-text">{successMessage}</p>}
+        
         </div>
         {/* submit button */}
         <div className="form-group">
-          <button className="btn btn-primary" type='submit'>Sign Up</button>
+          <div className="page-container">
+            <button className="btn-home" type='submit'>Sign Up</button>
+          </div>
         </div>
       </form>
       {errorMessage && (
@@ -134,6 +146,7 @@ const SignUp = () => {
         </div>
       )}
     </section>
+    </div>
   );
 };
 
