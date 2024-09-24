@@ -6,5 +6,5 @@ export interface TaskData {
     status_id?: number;
     user_id?: number;
     assignedUser?: string;
-    assignedUsers: string[]; 
+    assignedUsers?: string[]; 
   }
