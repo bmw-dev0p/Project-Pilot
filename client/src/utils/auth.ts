@@ -35,6 +35,8 @@ class AuthService {
       return null; // Return null on error
     }
   }
+
+  
 }
 
 // Export an instance of the AuthService class

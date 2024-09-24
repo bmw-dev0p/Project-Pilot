@@ -155,12 +155,176 @@
 }
 
 /* USER PAGE STYLES  */
-.user-pic {
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  margin-right: 10px;
+
+/* General page styles */
+.user-page-container {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 }
+
+/* Welcome message */
+.user-welcome {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* User details section */
+.user-details {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+}
+
+.user-details h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #007bff;
+}
+
+.user-details p {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #555;
+}
+
+/* User profile picture */
+.user-pic {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bold {
+  font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .user-details {
+    width: 90%;
+  }
+  
+  .user-pic {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+
+/* SIGN UP STYLES  */
+.page-container {
+  display: flex;
+  justify-content: center;
+}
+
+.page-container2 {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+/* Container for the form */
+.form-container {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  margin: 20px;
+}
+
+/* Form heading */
+.form-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Input field styles */
+.form-group {
+  margin-bottom: 15px;
+}
+
+
+.form-group-btn {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.form-label-pic {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  text-align: center;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Success and error message styles */
+.success-text {
+  color: #28a745;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.error-text {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+
+
+/* Cloudinary image upload label */
+.form-group label {
+  margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .form-container {
+    padding: 20px;
+    width: 100%;
+  }
+}
+
 
 /* BUTTONS  */
 
