@@ -13,12 +13,12 @@ import { StatusData } from '../../interfaces/StatusData';
 import { TaskData } from '../../interfaces/TaskData';
 
 // Initial setup of columns
-const initialColumns: Columns = {
-  todo: { name: 'To Do', items: [], color: '#FF4D4D' },
-  inProgress: { name: 'In Progress', items: [], color: '#FFA500' },
-  inReview: { name: 'In Review', items: [], color: '#1E90FF' },
-  done: { name: 'Done', items: [], color: '#32CD32' },
-};
+// const initialColumns: Columns = {
+//   todo: { name: 'To Do', items: [], color: '#FF4D4D' },
+//   inProgress: { name: 'In Progress', items: [], color: '#FFA500' },
+//   inReview: { name: 'In Review', items: [], color: '#1E90FF' },
+//   done: { name: 'Done', items: [], color: '#32CD32' },
+// };
 
 
 const Dashboard: React.FC = () => {
