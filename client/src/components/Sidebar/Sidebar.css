@@ -1,7 +1,7 @@
-/* Sidebar styling */
+
 .sidebar {
-    width: 70px; /* Width of the sidebar */
-    height: 95vh; /* Adjusted height to be a bit less than full viewport height */
+    width: 70px; /* Keep the sidebar width as intended */
+    height: 95vh; /* Slightly less than full viewport height to provide spacing */
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -10,6 +10,9 @@
     padding: 20px 0;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 30px; /* Rounded sidebar shape */
+    margin-top: 10px; /* Add space at the top to prevent it from being stuck */
+    margin-bottom: 10px; /* Add space at the bottom */
+    overflow: hidden; /* Prevent content from spilling out */
   }
   
   /* Top section with icons */
@@ -28,6 +31,7 @@
     align-items: center;
     gap: 15px; /* Space between user icon and logout button */
     margin-bottom: 20px; /* Add some margin at the bottom to separate from the bottom edge */
+    padding-bottom: 10px; /* Extra padding to ensure visibility */
   }
   
   /* Style for sidebar icons */

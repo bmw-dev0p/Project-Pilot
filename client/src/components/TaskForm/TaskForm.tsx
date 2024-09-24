@@ -1,11 +1,11 @@
-// src/components/TaskForm.tsx
-import { useState,useEffect } from 'react';
-import { TaskData } from '../../interfaces/TaskData';
+// src/components/TaskForm/TaskForm.tsx
+import { useState, useEffect } from 'react';
 import { retrieveUsers } from '../../api/userAPI';
 import { UserData } from '../../interfaces/UserData';
+import { TaskData } from '../../interfaces/TaskData';
 
 interface TaskFormProps {
-  onSubmit: (task: TaskData) => void;
+  onSubmit: (task: Task) => void; // Change TaskData to Task here
   onDelete: (taskId: number) => void;
   onClose: () => void;
   initialTask?: TaskData | null;
@@ -25,12 +25,17 @@ interface Task {
 
 const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onDelete, onClose, initialTask, statusId }) => {
   const [users, setUsers] = useState<UserData[]>([]);
+
   useEffect(() => {
     const fetchUsers = async () => {
-      const usersList = await retrieveUsers();
-      setUsers(usersList);
+      try {
+        const usersList = await retrieveUsers();
+        setUsers(usersList);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
     };
-  
+
     fetchUsers();
   }, []);
   console.log(users);
@@ -48,7 +53,7 @@ console.log(assignedUser);
     });
     console.log(`This is the user: ${user}`);
     const updatedTask: Task = {
-      id: initialTask?.id ?? 0,
+      id: initialTask?.id ?? Date.now(),
       title,
       description,
       dueDate,
@@ -98,33 +103,33 @@ console.log(assignedUser);
         <input
           type="text"
           placeholder="Title"
-          value={title}
+          value={title || ''}
           onChange={(e) => setTitle(e.target.value)}
           required
           className="task-input"
         />
         <textarea
           placeholder="Description"
-          value={description}
+          value={description || ''}
           onChange={(e) => setDescription(e.target.value)}
           className="task-textarea"
         />
         <input
           type="date"
-          value={dueDate}
+          value={dueDate || ''}
           onChange={(e) => setDueDate(e.target.value)}
           className="task-input"
         />
         <label>Assign User:</label>
         <select
-          value={assignedUser}
+          value={assignedUser || ''}
           onChange={(e) => setAssignedUser(e.target.value)}
           className="task-input"
         >
           {/* <option disabled selected>Select Username from Below</option> */}
           {users.map((user) => (
-            <option key={user.id} value={`${user.username}`}>
-              {`${user.username}`}
+            <option key={user.id} value={user.username}>
+              {user.username}
             </option>
           ))}
         </select>

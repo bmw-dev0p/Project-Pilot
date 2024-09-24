@@ -1,4 +1,4 @@
-.task-card {
+/* .task-card {
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -7,7 +7,7 @@
     transition: box-shadow 0.2s ease-in-out;
     display: block;
     cursor: pointer;
-  }
+  } */
   
   .task-title {
     font-weight: bold;
@@ -70,12 +70,54 @@
     margin-bottom: 10px;
   }
   
-  .edit-icon {
+  /* .edit-icon {
     font-size: 16px;
     cursor: pointer;
     color: #4a4a4a;
     margin-left: 10px;
+  } */
+  /* Task card styling */
+/* Task card styling */
+/* Task card styling */
+/* Task card styling */
+.task-card {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
+  
+  /* Task card footer with icons */
+  .task-card-footer {
+    display: flex;
+    justify-content: space-between; /* Ensures the icons are on opposite sides */
+    align-items: center;
+    margin-top: 10px;
+    padding: 0 5px; /* Add padding to space out the icons */
+  }
+  
+  /* Styling for the user icon on the left */
+  .user-icon {
+    font-size: 16px;
+    color: #007bff;
+    margin-left: 5px; /* Adjust spacing from the left */
+  }
+  
+  /* Styling for the edit icon on the right */
+  .edit-icon {
+    font-size: 14px;
+    color: #007bff;
+    cursor: pointer;
+    margin-right: 5px; /* Adjust spacing from the right */
+  }
+  
+  
+  
   
   
   
