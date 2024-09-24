@@ -28,9 +28,9 @@ Our platform is built for both individuals and teams, with features that streaml
 
 ## Usage:
   Landing page displaying Search and Save buttons, navigation
-  <br/>![home](https://github.com/bmw-dev0p/Candidate-Search-C13/blob/main/src/assets/usage1.jpg?raw=true)
-  <br/> Saved candidate table
-  <br/>![home](https://github.com/bmw-dev0p/Candidate-Search-C13/blob/main/src/assets/usage2.jpg?raw=true)
+  <br/>![home](https://github.com/bmw-dev0p/Project-Pilot/blob/main/client/src/assets/readme1.jpg?raw=true)
+  <br/> Sign up with image upload
+  <br/>![signup](https://github.com/bmw-dev0p/Project-Pilot/blob/main/client/src/assets/readme2.jpg?raw=true)
 
 ## Features:
 ### Coding Language(s): 
