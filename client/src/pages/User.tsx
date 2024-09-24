@@ -22,7 +22,7 @@ const User = () => {
                 <h1>
                     Welcome, {user.fname} {user.lname}
                 </h1>
-                {user.img && <img src={user.img} alt="Profile" className="user-pic" />}
+                {user.img && <img src={user.img} alt="Profile" className="user -pic" />}
                 <div>
                     <h3>User Details:</h3>
                     <p>First Name: {user.fname}</p>
