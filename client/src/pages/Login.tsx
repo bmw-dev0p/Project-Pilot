@@ -2,6 +2,7 @@ import { useState, FormEvent, ChangeEvent } from "react";
 import Auth from '../utils/auth';  // Import the Auth utility for managing authentication state
 import { login } from "../api/authAPI";  // Import the login function from the API
 import { UserLogin } from "../interfaces/UserLogin";  // Import the interface for UserLogin
+import '../index.css';
 
 const Login = () => {
   // State to manage the login form data
@@ -55,9 +56,10 @@ const Login = () => {
   };
 
   return (
-    <div className='form-container'>
+    <div className="page-container">
+    <section className='form-container'>
       <form className='form login-form' onSubmit={handleSubmit}>
-        <h1>Login</h1>
+        <h1 className="form-title">Login</h1>
         {/* Username input field */}
         <div className="form-group">
           <label>Username</label>
@@ -82,7 +84,9 @@ const Login = () => {
         </div>
         {/* Submit button for the login form */}
         <div className="form-group">
-          <button className="btn btn-primary" type='submit'>Login</button>
+          <div className="page-container">
+          <button className="btn-home" type='submit'>Login</button>
+        </div>
         </div>
       </form>
       {errorMessage && (
@@ -90,6 +94,7 @@ const Login = () => {
           <p className="error-text">{errorMessage}</p>
         </div>
       )}
+    </section>
     </div>
   );
 };

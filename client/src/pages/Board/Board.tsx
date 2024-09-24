@@ -7,12 +7,12 @@ import "./Board.css";
 
 const Board = () => {
   return (
-    <div className="dashboard d-flex">
+    <div className="dashboard">
       {/* Sidebar for navigation */}
       <Sidebar /> 
 
       {/* Main dashboard area */}
-      <Container fluid className="p-4">
+      <Container fluid className="dashboard-main-container">
         <h2>Project Dashboard</h2>
         <p>Manage your tasks and projects easily</p>
         

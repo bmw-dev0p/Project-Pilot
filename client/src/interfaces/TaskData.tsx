@@ -1,10 +1,11 @@
 export interface TaskData {
-    id?: number;
+    id: number;
     title: string;
     description?: string;
     dueDate? : string;
-    status_id?: number;
+    status_id: number;
+
     user_id?: number;
     assignedUser?: string;
-    assignedUsers: string[]; 
+    assignedUsers?: string[]; 
   }
