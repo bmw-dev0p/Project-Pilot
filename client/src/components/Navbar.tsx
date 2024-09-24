@@ -4,7 +4,6 @@ import auth from '../utils/auth';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
 import logo from '../assets/pilot-logo.png';
 import '../index.css';
 
@@ -70,7 +69,6 @@ const NavigationBar = () => {
                   <Link to="/user">
                     <img src={profilePicture} alt="Profile" className="profile-pic" />
                   </Link>
-                  <Button variant="outline-danger" onClick={() => auth.logout()}>Logout</Button>
                 </>
               )
             }

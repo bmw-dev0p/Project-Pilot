@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 interface ColumnHeaderProps {
   name: string;
-  color: string;
+  color: string | undefined;
   onAddTask: () => void;
   onEditColumnName: (newName: string) => void;
 }
@@ -11,6 +11,7 @@ interface ColumnHeaderProps {
 const ColumnHeader: React.FC<ColumnHeaderProps> = ({ name, color, onAddTask, onEditColumnName }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [columnName, setColumnName] = useState(name);
+
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setColumnName(e.target.value);
