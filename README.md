@@ -2,7 +2,9 @@
 Task Management Website - Project 2 
 Created By: Brad Webster, Andrew Surrena, and Nadia Hashemi - in collaboration with edX Coding Bootcamp
 ## Description:
-As a github user myself, I find the community of open-source coding to be revolutionary. The free flow of ideas has enabled me to endlessly learn about programming. With git being the one centralized location for sharing coding knowledge, I wanted to create a fun way to discover other users and reops. Therefore I created this github user search project to pull a random github user with public information. Using typescript, react and apis, I learned how to integrate provided tools into a functional application.
+Project Pilot is a task management platform designed to make organizing and managing tasks easier, faster, and more convenient. Whether you're handling workplace projects, personal to-dos, or school assignments, Project Pilot offers a variety of tools to help you stay on track.
+
+Our platform is built for both individuals and teams, with features that streamline workflows and help you focus on what truly matters. From intuitive task tracking to efficient team collaboration, Project Pilot adapts to your needs and simplifies your task management experience.
 ## Table of Contents:
   * [Installation](#installation)
   * [Usage](#usage)
@@ -40,15 +42,18 @@ As a github user myself, I find the community of open-source coding to be revolu
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) 
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)
-<br/>React, Node.js, NPM, Sequilize
+<br/>React, Node.js, NPM, Postgres, Sequilize
 ### Other Features: 
-- All features built into a single web page
-- Tab style navigation for different "pages"
-- Accessible User Interface with stylized web elements.
-- Find real Github users via git's API
-- Selected Candidates automatically saved for the user
-- Infinitely scalable
+- Task organization for personal and professional use
+- Team collaboration tools
+- Intuitive interface designed to enhance productivity
+- User account creation with profile pictures via cloudinary
+- User login/logout with password encryption and conditional rendering for best cybersecurity practices
+ - User profile page to update their own info (in progress)
+- User task management features include: Ability to create, edit, update, and delete tasks, assign them to "status" columns, and assign them to other users
+- Side navigation bar for frequently accessed pages
 
 ## License / Badges:
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
@@ -57,9 +62,12 @@ This project is licensed under the MIT license. Click the badge for more informa
 ## Credits:
 [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/bmw-dev0p)
 Brad Webster's Github Portfolio
+<br/>[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/nadiahashe)
+Nadia Hashemi's Github Portfolio
+<br/>[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/andrew-surrena)
+Andrew Surrena's Github Portfolio
 <br/>Created in collaboration with edX Coding Bootcamp
 <br/>Github Badges - https://github.com/Ileriayo/markdown-badges
-<br/>React portfolio inspiration - https://soumyajit.vercel.app/project
 <br/>CSS Button Template - https://getcssscan.com/css-buttons-examples
   
 
