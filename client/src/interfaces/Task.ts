@@ -5,6 +5,8 @@ export interface Task {
     description: string;
     dueDate: string;
     Status: StatusData | null;
-    assignedUsers: UserData | null;
+    assignedUsers: UserData | null | string;
+    editTask: string;
+    deleteTask: string;
   }
   
