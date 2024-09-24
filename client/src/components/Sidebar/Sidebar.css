@@ -1,65 +1,70 @@
 
 .sidebar {
-    width: 70px; /* Keep the sidebar width as intended */
-    height: 95vh; /* Slightly less than full viewport height to provide spacing */
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Space out the top and bottom sections */
-    align-items: center;
-    padding: 20px 0;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 30px; /* Rounded sidebar shape */
-    margin-top: 10px; /* Add space at the top to prevent it from being stuck */
-    margin-bottom: 10px; /* Add space at the bottom */
-    overflow: hidden; /* Prevent content from spilling out */
-  }
-  
-  /* Top section with icons */
-  .sidebar-top {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px; /* Adjust gap to space out the icons properly */
-    margin-top: 20px; /* Add some margin at the top to separate from the top edge */
-  }
-  
-  /* Bottom section for user avatar and logout */
-  .sidebar-bottom {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px; /* Space between user icon and logout button */
-    margin-bottom: 20px; /* Add some margin at the bottom to separate from the bottom edge */
-    padding-bottom: 10px; /* Extra padding to ensure visibility */
-  }
-  
-  /* Style for sidebar icons */
-  .sidebar-icon {
-    font-size: 24px; /* Increase icon size for better visibility */
-    color: #7a7a7a; /* Gray color */
-    cursor: pointer;
-    transition: color 0.2s;
-  }
-  
-  .sidebar-icon:hover {
-    color: #4a4a4a; /* Slightly darker gray on hover */
-  }
-  
-  /* Style for the user avatar or placeholder */
-  .user-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%; /* Make the avatar perfectly round */
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #e0e0e0; /* Light gray background */
-  }
-  
-  /* Logout icon specific styling */
-  .logout-icon {
-    color: #ff4d4f; /* Distinct color for logout */
-  }
-  
+  width: 70px; /* Fixed sidebar width */
+  height: 95vh; /* Adjusted height to be a bit less than full viewport height */
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space out the top and bottom sections */
+  align-items: center;
+  padding: 20px 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 30px; /* Rounded sidebar shape */
+}
+
+/* Top section with icons */
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 120px; /* Increased gap to space out the top icons more */
+  margin-top: 30px; /* Add some more margin at the top */
+  width: 100%; /* Ensure the icons stay aligned within the sidebar */
+}
+
+/* Bottom section for user avatar and logout */
+.sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px; /* Space between user icon and logout button */
+  margin-bottom: 20px; /* Add some margin at the bottom */
+}
+
+/* Style for sidebar icons */
+.sidebar-icon {
+  font-size: 24px; /* Increase icon size for better visibility */
+  color: #7a7a7a; /* Gray color */
+  cursor: pointer;
+  transition: color 0.2s;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Fix crooked icons by ensuring they stay centered */
+.sidebar-icon:hover {
+  color: #4a4a4a; /* Slightly darker gray on hover */
+}
+
+/* Style for the user avatar or placeholder */
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Make the avatar perfectly round */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0e0e0; /* Light gray background */
+}
+
+/* Logo and main icon styling */
+.logo .main-icon {
+  font-size: 30px; /* Slightly larger for the main icon */
+}
+
+/* Logout icon specific styling */
+.logout-icon {
+  color: #ff4d4f; /* Distinct color for logout */
+}

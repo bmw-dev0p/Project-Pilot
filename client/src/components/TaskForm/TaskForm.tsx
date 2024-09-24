@@ -2,30 +2,16 @@
 import { useState, useEffect } from 'react';
 import { retrieveUsers } from '../../api/userAPI';
 import { UserData } from '../../interfaces/UserData';
-import { TaskData } from '../../interfaces/TaskData';
-
+import { Task } from '../../interfaces/Types'; // Ensure Task type is correctly imported
 interface TaskFormProps {
-  onSubmit: (task: Task) => void; // Change TaskData to Task here
+  onSubmit: (task: Task) => void;
   onDelete: (taskId: number) => void;
   onClose: () => void;
-  initialTask?: TaskData | null;
-  statusId: number
+  initialTask?: Task | null;
+  statusId: number;
 }
-
-interface Task {
-  id?: number;
-  title: string;
-  description: string;
-  dueDate: string;
-  assignedUser: string;
-  status_id?:number;
-  user_id?: number
-}
-
-
 const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onDelete, onClose, initialTask, statusId }) => {
   const [users, setUsers] = useState<UserData[]>([]);
-
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -35,62 +21,36 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, onDelete, onClose, initia
         console.error('Error fetching users:', error);
       }
     };
-
     fetchUsers();
   }, []);
-  console.log(users);
   const [title, setTitle] = useState(initialTask?.title || '');
   const [description, setDescription] = useState(initialTask?.description || '');
   const [dueDate, setDueDate] = useState(initialTask?.dueDate || '');
   const [assignedUser, setAssignedUser] = useState(initialTask?.assignedUser || 'Unassigned');
-console.log(assignedUser);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const user = users.find(user => {
-      console.log(`Comparing ${user.username} with ${assignedUser}`);
-      return user.username === assignedUser;
-    });
-    console.log(`This is the user: ${user}`);
+    // Find the user based on the assigned username
+    const user = users.find((user) => user.username === assignedUser);
+    // Ensure assignedUsers is an array, as expected by the Task type
     const updatedTask: Task = {
       id: initialTask?.id ?? Date.now(),
       title,
       description,
       dueDate,
-      assignedUser: assignedUser,
+      assignedUser, // Use the selected assigned user
+      assignedUsers: [assignedUser], // Ensure this matches Task type with an array
       status_id: statusId,
-      user_id: user?.id ?? undefined
+      user_id: user?.id ?? undefined,
     };
-    console.log('Updated Task:', updatedTask);
     onSubmit(updatedTask);
     onClose();
   };
-
-  // const handleAddTask = (e: React.FormEvent) => {
-  //   e.preventDefault();
-
-  //   const addedTask: Task = {
-  //     title,
-  //     description,
-  //     dueDate,
-  //    assignedUser: assignedUser,
-  //     status_id: statusId
-  //   };
-  //   console.log(assignedUser);
-  //   onSubmit(addedTask);
-  //   onClose();
-
-  // };
-
   const handleDelete = () => {
-    if (initialTask) {
-      if (initialTask?.id !== undefined) {
-        onDelete(initialTask.id);
-      }
+    if (initialTask && initialTask.id !== undefined) {
+      onDelete(initialTask.id);
       onClose();
     }
   };
-
   return (
     <div className="task-modal">
       <div className="task-modal-header">
@@ -126,7 +86,6 @@ console.log(assignedUser);
           onChange={(e) => setAssignedUser(e.target.value)}
           className="task-input"
         >
-          {/* <option disabled selected>Select Username from Below</option> */}
           {users.map((user) => (
             <option key={user.id} value={user.username}>
               {user.username}
@@ -147,5 +106,4 @@ console.log(assignedUser);
     </div>
   );
 };
-
 export default TaskForm;

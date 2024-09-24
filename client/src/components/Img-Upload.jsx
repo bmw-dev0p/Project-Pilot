@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+
 // Ensure environment variables are set
 // const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
 // const apiKey = process.env.CLOUDINARY_API_KEY;
@@ -34,7 +35,7 @@ class CloudinaryUploadWidget extends Component {
 
   render() {
     return (
-      <button id="upload_widget" className="cloudinary-button">
+      <button id="upload_widget" className="btn-home">
         Upload
       </button>
     );
