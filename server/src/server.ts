@@ -8,7 +8,7 @@ import routes from './routes/api/api-routes.js';
 const forceDatabaseRefresh = false;
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const port = process.env.PORT || 4000;
 
 // Serves static files in the entire client's dist folder
 app.use(express.static('../client/dist'));
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(routes);
 
 sequelize.sync({force: forceDatabaseRefresh}).then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
+  app.listen(port, () => {
+    console.log(`Server is listening on port ${port}`);
   });
 });
